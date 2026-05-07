@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>КВИК — AI-консьерж покупок | Инвест-демо v2.0</title>
+    <title>КВИК — AI-помощник по покупкам | Демо</title>
     <style>
         :root {
             --kvik-purple: #7c3aed;
@@ -193,19 +193,14 @@
             color: #cbd5e1;
             border: 1px solid rgba(255, 255, 255, 0.04);
         }
-        .message.ai strong {
-            color: #c4b5fd;
-        }
+        .message.ai strong { color: #c4b5fd; }
 
         /* Анимация печати */
         .typing {
-            display: flex;
-            gap: 6px;
-            padding: 16px;
+            display: flex; gap: 6px; padding: 16px;
         }
         .typing span {
-            width: 7px;
-            height: 7px;
+            width: 7px; height: 7px;
             background: var(--kvik-accent);
             border-radius: 50%;
             animation: typingBounce 1.4s infinite ease-in-out;
@@ -223,11 +218,7 @@
         }
 
         /* Поле ввода */
-        .input-area {
-            display: flex;
-            gap: 8px;
-            margin-top: 12px;
-        }
+        .input-area { display: flex; gap: 8px; margin-top: 12px; }
         .input-field {
             flex: 1;
             background: rgba(255, 255, 255, 0.05);
@@ -240,9 +231,7 @@
             transition: all 0.3s;
             font-family: inherit;
         }
-        .input-field::placeholder {
-            color: #64748b;
-        }
+        .input-field::placeholder { color: #64748b; }
         .input-field:focus {
             border-color: var(--kvik-purple);
             box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
@@ -250,42 +239,26 @@
         }
         .send-btn {
             background: linear-gradient(135deg, var(--kvik-purple), #6366f1);
-            color: white;
-            border: none;
-            border-radius: 24px;
-            padding: 11px 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-            transition: all 0.3s;
-            white-space: nowrap;
+            color: white; border: none;
+            border-radius: 24px; padding: 11px 20px;
+            cursor: pointer; font-weight: 600; font-size: 13px;
+            transition: all 0.3s; white-space: nowrap;
         }
         .send-btn:hover {
             box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4);
             transform: translateY(-1px);
         }
-        .send-btn:active {
-            transform: scale(0.96);
-        }
+        .send-btn:active { transform: scale(0.96); }
 
         /* Быстрые кнопки */
-        .quick-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 10px;
-        }
+        .quick-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
         .quick-btn {
             background: rgba(255, 255, 255, 0.03);
             color: var(--kvik-accent);
             border: 1px solid rgba(124, 58, 237, 0.2);
-            padding: 7px 13px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 11px;
-            font-weight: 500;
-            transition: all 0.25s;
-            white-space: nowrap;
+            padding: 7px 13px; border-radius: 20px;
+            cursor: pointer; font-size: 11px; font-weight: 500;
+            transition: all 0.25s; white-space: nowrap;
         }
         .quick-btn:hover {
             background: rgba(124, 58, 237, 0.2);
@@ -295,168 +268,110 @@
         }
 
         /* Панель выдачи */
-        .results-panel {
-            width: 56%;
-            padding: 22px;
-            overflow-y: auto;
-        }
+        .results-panel { width: 56%; padding: 22px; overflow-y: auto; }
         .results-panel::-webkit-scrollbar { width: 3px; }
         .results-panel::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
 
         .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
+            display: flex; justify-content: space-between;
+            align-items: center; margin-bottom: 16px;
         }
         .section-title h3 {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--kvik-muted);
-            font-weight: 600;
+            font-size: 12px; text-transform: uppercase;
+            letter-spacing: 2px; color: var(--kvik-muted); font-weight: 600;
         }
         .sort-badge {
             background: rgba(6, 182, 212, 0.15);
-            color: #67e8f9;
-            padding: 4px 12px;
-            border-radius: 14px;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            color: #67e8f9; padding: 4px 12px;
+            border-radius: 14px; font-size: 10px;
+            font-weight: 600; letter-spacing: 0.5px;
         }
 
-        .product-card {
+        /* Карточка товара — теперь это ссылка */
+        a.product-card {
             background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 16px 18px;
+            border-radius: 16px; padding: 16px 18px;
             margin-bottom: 10px;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s; cursor: pointer;
+            position: relative; overflow: hidden;
+            text-decoration: none; display: block; color: inherit;
         }
-        .product-card::before {
+        a.product-card::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
+            position: absolute; top: 0; left: 0;
+            width: 4px; height: 100%;
             background: linear-gradient(to bottom, var(--kvik-purple), var(--kvik-cyan));
-            opacity: 0;
-            transition: opacity 0.3s;
+            opacity: 0; transition: opacity 0.3s;
             border-radius: 0 4px 4px 0;
         }
-        .product-card:hover {
+        a.product-card:hover {
             background: rgba(255, 255, 255, 0.07);
             border-color: rgba(124, 58, 237, 0.25);
             transform: translateX(6px);
         }
-        .product-card:hover::before {
-            opacity: 1;
-        }
-        .product-card.no-name {
-            opacity: 0.4;
-            filter: grayscale(0.7);
+        a.product-card:hover::before { opacity: 1; }
+
+        a.product-card.no-name {
+            opacity: 0.4; filter: grayscale(0.7);
             pointer-events: none;
             border-color: rgba(239, 68, 68, 0.15);
         }
-        .product-card.no-name::after {
+        a.product-card.no-name::after {
             content: '⛔ ИСКЛЮЧЕНО КВИК';
-            position: absolute;
-            top: 10px;
-            right: 14px;
-            font-size: 9px;
-            font-weight: 700;
-            color: #fca5a5;
+            position: absolute; top: 10px; right: 14px;
+            font-size: 9px; font-weight: 700; color: #fca5a5;
             background: rgba(127, 29, 29, 0.6);
-            padding: 3px 8px;
-            border-radius: 10px;
-            letter-spacing: 0.5px;
+            padding: 3px 8px; border-radius: 10px;
+            letter-spacing: 0.5px; z-index: 2;
         }
 
         .product-name {
-            font-weight: 600;
-            color: #f1f5f9;
-            font-size: 14.5px;
-            margin-bottom: 6px;
-            padding-right: 110px;
+            font-weight: 600; color: #f1f5f9;
+            font-size: 14.5px; margin-bottom: 6px; padding-right: 30px;
         }
         .shop-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 12.5px;
-            color: var(--kvik-muted);
-            margin-bottom: 10px;
+            display: flex; align-items: center; gap: 8px;
+            font-size: 12.5px; color: var(--kvik-muted); margin-bottom: 10px;
         }
-        .shop-name {
-            font-weight: 500;
-            color: var(--kvik-text);
-        }
+        .shop-name { font-weight: 500; color: var(--kvik-text); }
         .trust-badge {
             background: rgba(16, 185, 129, 0.2);
-            color: #34d399;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 10px;
-            font-weight: 700;
+            color: #34d399; padding: 2px 8px;
+            border-radius: 10px; font-size: 10px; font-weight: 700;
         }
         .no-name-badge {
             background: rgba(239, 68, 68, 0.2);
-            color: #f87171;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 10px;
-            text-decoration: line-through;
+            color: #f87171; padding: 2px 8px;
+            border-radius: 10px; font-size: 10px; text-decoration: line-through;
         }
+        .external-link-icon {
+            position: absolute; top: 14px; right: 14px;
+            font-size: 14px; opacity: 0; transition: opacity 0.3s;
+        }
+        a.product-card:hover .external-link-icon { opacity: 1; }
+
         .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .price {
-            font-size: 21px;
-            font-weight: 700;
-            color: #f8fafc;
-        }
-        .price-rub {
-            font-size: 14px;
-            color: var(--kvik-muted);
-            font-weight: 500;
-        }
+        .price { font-size: 21px; font-weight: 700; color: #f8fafc; }
+        .price-rub { font-size: 14px; color: var(--kvik-muted); font-weight: 500; }
         .kvik-score {
             background: linear-gradient(135deg, var(--kvik-purple), #6366f1);
-            padding: 6px 14px;
-            border-radius: 18px;
-            font-size: 13px;
-            font-weight: 700;
-            color: white;
+            padding: 6px 14px; border-radius: 18px;
+            font-size: 13px; font-weight: 700; color: white;
             box-shadow: 0 2px 10px rgba(124, 58, 237, 0.3);
         }
         .meta-info {
-            font-size: 10.5px;
-            color: #64748b;
-            margin-top: 8px;
-            display: flex;
-            gap: 12px;
+            font-size: 10.5px; color: #64748b;
+            margin-top: 8px; display: flex; gap: 12px;
         }
 
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: #475569;
-        }
-        .empty-state .icon {
-            font-size: 48px;
-            margin-bottom: 16px;
-        }
-        .empty-state p {
-            font-size: 14px;
-            line-height: 1.6;
-        }
+        .empty-state { text-align: center; padding: 60px 20px; color: #475569; }
+        .empty-state .icon { font-size: 48px; margin-bottom: 16px; }
+        .empty-state p { font-size: 14px; line-height: 1.6; }
+
+        .click-hint { font-size: 10px; color: #64748b; text-align: center; margin-top: 8px; }
 
         @media (max-width: 980px) {
             .plugin-window { height: auto; min-height: 100vh; border-radius: 0; }
@@ -469,7 +384,6 @@
 <body>
 
 <div class="plugin-window">
-    <!-- Тулбар -->
     <div class="toolbar">
         <div class="logo-container">
             <div class="logo-icon">K</div>
@@ -482,28 +396,18 @@
         </div>
     </div>
 
-    <!-- Основной интерфейс -->
     <div class="main-content">
-        <!-- Чат -->
         <div class="chat-panel">
-            <div class="chat-label">🤖 AI-консьерж КВИК</div>
+            <div class="chat-label">🤖 AI-помощник КВИК</div>
             <div class="messages" id="chatMessages">
                 <div class="message ai">
-                    👋 Я <strong>КВИК</strong> — ваш AI-помощник. Напишите, что вам нужно, и я подберу лучший товар. Ноунеймов исключаю автоматически.
+                    👋 Я <strong>КВИК</strong> — ваш AI-помощник по покупкам. Напишите, что вам нужно, и я подберу лучший товар по соотношению <strong>Цена/Качество</strong>. Ноунеймов исключаю автоматически.
                 </div>
             </div>
-            <!-- ПОЛЕ ВВОДА -->
             <div class="input-area">
-                <input 
-                    type="text" 
-                    class="input-field" 
-                    id="userInput" 
-                    placeholder="Например: нужен мощный ноутбук для монтажа видео..."
-                    onkeydown="if(event.key==='Enter')sendMessage()"
-                >
+                <input type="text" class="input-field" id="userInput" placeholder="Например: нужен мощный ноутбук для монтажа..." onkeydown="if(event.key==='Enter')sendMessage()">
                 <button class="send-btn" onclick="sendMessage()">➤</button>
             </div>
-            <!-- Быстрые сценарии -->
             <div class="quick-actions">
                 <div class="quick-btn" onclick="runScenario('laptop')">💻 Ноутбук</div>
                 <div class="quick-btn" onclick="runScenario('coffee')">☕ Кофемашина</div>
@@ -514,7 +418,6 @@
             </div>
         </div>
 
-        <!-- Результаты -->
         <div class="results-panel" id="resultsPanel">
             <div class="section-title">
                 <h3>🏆 Лучшее соотношение</h3>
@@ -523,246 +426,184 @@
             <div id="productContainer">
                 <div class="empty-state">
                     <div class="icon">🎯</div>
-                    <p>Напишите запрос в чате<br>или выберите сценарий ниже</p>
+                    <p>Напишите запрос в чате<br>или выберите сценарий</p>
                 </div>
             </div>
+            <div class="click-hint">💡 Нажмите на карточку — откроется товар в магазине</div>
         </div>
     </div>
 </div>
 
 <script>
-    // ============================================
-    // БАЗА ДАННЫХ СЦЕНАРИЕВ
-    // ============================================
-    const DEMO_DATA = {
-        laptop: {
-            keywords: ['ноутбук', 'ноут', 'laptop', 'игр', 'cyberpunk', 'монтаж', 'видео', 'работа', 'программирование', 'код'],
-            aiResponse: "Для <strong>работы и игр</strong> нужен мощный процессор и дискретная видеокарта. Проанализировал 43 магазина. Исключил 7 ноунейм-продавцов. Вот лучшие по формуле <strong>КВИК Q/P</strong>:",
-            products: [
-                { name: "Lenovo Legion 5 Pro (RTX 4060)", shop: "DNS", trust: true, price: 129999, reviews: 4.8, reviewsCount: 342, nnm: false },
-                { name: "ASUS TUF Gaming A15", shop: "OZON (М.Видео)", trust: true, price: 109990, reviews: 4.6, reviewsCount: 512, nnm: false },
-                { name: "MSI Katana 17", shop: "Яндекс.Маркет", trust: true, price: 119500, reviews: 4.5, reviewsCount: 203, nnm: false },
-                { name: "Dell G15 (подозрительно дёшево)", shop: "ИП Ноунейм", trust: false, price: 89999, reviews: 3.1, reviewsCount: 12, nnm: true },
-            ]
-        },
-        coffee: {
-            keywords: ['кофе', 'кофемашина', 'зерна', 'зерновая', 'эспрессо', 'капучино', 'coffee'],
-            aiResponse: "Зерновая кофемашина — отличный выбор для дома. Ключевое: надёжность бренда и лёгкость чистки. <strong>Delonghi</strong> и <strong>Philips</strong> лидируют по отзывам. Ноунеймы скрыты.",
-            products: [
-                { name: "De'Longhi Magnifica S ECAM 22.110", shop: "М.Видео", trust: true, price: 45990, reviews: 4.9, reviewsCount: 1245, nnm: false },
-                { name: "Philips Series 2200 EP2230", shop: "OZON (официальный)", trust: true, price: 42990, reviews: 4.7, reviewsCount: 876, nnm: false },
-                { name: "Kitfort КТ-739", shop: "Связной", trust: true, price: 18990, reviews: 4.4, reviewsCount: 432, nnm: false },
-                { name: "Супер-кофе Ultra 3000", shop: "Telegram-канал", trust: false, price: 15990, reviews: 2.8, reviewsCount: 5, nnm: true },
-            ]
-        },
-        vacuum: {
-            keywords: ['пылесос', 'робот', 'уборка', 'влажная', 'robot', 'vacuum', 'xaiomi'],
-            aiResponse: "Робот-пылесос с влажной уборкой и LiDAR. <strong>Xiaomi</strong> и <strong>Dreame</strong> дают лучшие технологии за свои деньги.",
-            products: [
-                { name: "Xiaomi Robot Vacuum X20+", shop: "Яндекс.Маркет", trust: true, price: 32990, reviews: 4.7, reviewsCount: 678, nnm: false },
-                { name: "Dreame D10 Plus", shop: "OZON (офиц.)", trust: true, price: 28990, reviews: 4.8, reviewsCount: 543, nnm: false },
-                { name: "iRobot Roomba i3+", shop: "DNS", trust: true, price: 44990, reviews: 4.5, reviewsCount: 890, nnm: false },
-                { name: "Копия Xiaomi без гарантии", shop: "Палатка на рынке", trust: false, price: 12990, reviews: 3.9, reviewsCount: 34, nnm: true },
-            ]
-        },
-        powerbank: {
-            keywords: ['пауэрбанк', 'powerbank', 'зарядка', 'поход', 'аккумулятор', 'power bank', 'батарея'],
-            aiResponse: "Для походов с ноутбуком — нужен мощный (65W+) пауэрбанк на 20 000+ мАч. <strong>Baseus Blade</strong> и <strong>Xiaomi 50W</strong> — топ.",
-            products: [
-                { name: "Baseus Blade 100W 20000mAh", shop: "OZON (официальный)", trust: true, price: 5490, reviews: 4.8, reviewsCount: 2100, nnm: false },
-                { name: "Xiaomi Power Bank 50W 20000mAh", shop: "Яндекс.Маркет", trust: true, price: 3990, reviews: 4.9, reviewsCount: 3400, nnm: false },
-                { name: "Anker PowerCore 737", shop: "М.Видео", trust: true, price: 8990, reviews: 4.9, reviewsCount: 980, nnm: false },
-                { name: 'Пауэрбанк "Ядерный" 100500mAh', shop: "СПАМ-рассылка", trust: false, price: 1490, reviews: 2.2, reviewsCount: 8, nnm: true },
-            ]
-        },
-        headphones: {
-            keywords: ['наушники', 'блютуз', 'звук', 'музыка', 'headphones', 'earphones', 'гарнитура'],
-            aiResponse: "Беспроводные наушники с хорошим шумоподавлением. <strong>Sony</strong> и <strong>Apple</strong> — лидеры по качеству звука. Подобрал лучшие варианты:",
-            products: [
-                { name: "Sony WH-1000XM5", shop: "М.Видео", trust: true, price: 29990, reviews: 4.9, reviewsCount: 2500, nnm: false },
-                { name: "Apple AirPods Pro 2", shop: "DNS", trust: true, price: 23990, reviews: 4.8, reviewsCount: 5200, nnm: false },
-                { name: "Samsung Galaxy Buds2 Pro", shop: "OZON (офиц.)", trust: true, price: 14990, reviews: 4.6, reviewsCount: 1230, nnm: false },
-                { name: "Супер-звук Pro Max", shop: "Стихийный рынок", trust: false, price: 2990, reviews: 3.5, reviewsCount: 45, nnm: true },
-            ]
-        },
-        phone: {
-            keywords: ['телефон', 'смартфон', 'iphone', 'android', 'самсунг', 'сяоми', 'мобильный'],
-            aiResponse: "Смартфон с хорошей камерой и производительностью. Сравнил 27 магазинов — вот лучшие по Q/P:",
-            products: [
-                { name: "Samsung Galaxy S24 Ultra", shop: "OZON (Samsung)", trust: true, price: 109990, reviews: 4.8, reviewsCount: 1400, nnm: false },
-                { name: "iPhone 15 Pro", shop: "М.Видео", trust: true, price: 124990, reviews: 4.9, reviewsCount: 3200, nnm: false },
-                { name: "Xiaomi 14 Pro", shop: "Яндекс.Маркет", trust: true, price: 79990, reviews: 4.6, reviewsCount: 980, nnm: false },
-                { name: "iPhone 15 Pro (серый)", shop: "Ларёк у метро", trust: false, price: 59990, reviews: 2.9, reviewsCount: 18, nnm: true },
-            ]
-        },
-        fallback: {
-            aiResponse: "Я понял ваш запрос, но в этой демо-версии моя база знаний ограничена. Попробуйте написать про <strong>ноутбук, кофемашину, робот-пылесос, пауэрбанк, наушники или смартфон</strong> — это сценарии, которые я могу показать прямо сейчас.",
-            products: []
+const DEMO_DATA = {
+    laptop: {
+        keywords: ['ноутбук','ноут','laptop','игр','cyberpunk','монтаж','видео','работа','программирование','код'],
+        aiResponse: "Для <strong>работы и игр</strong> нужен мощный процессор и видеокарта. Проанализировал 43 магазина. Исключил 7 ноунеймов. Вот лучшие по <strong>КВИК Q/P</strong>:<br><br>💡 <em>Нажмите на карточку — откроется товар в магазине.</em>",
+        products: [
+            { name:"Lenovo Legion 5 Pro (RTX 4060)", shop:"DNS", trust:true, price:129999, reviews:4.8, reviewsCount:342, nnm:false, url:"https://www.dns-shop.ru/search/?q=lenovo+legion+5+pro+rtx+4060" },
+            { name:"ASUS TUF Gaming A15", shop:"OZON (М.Видео)", trust:true, price:109990, reviews:4.6, reviewsCount:512, nnm:false, url:"https://www.ozon.ru/search/?text=asus+tuf+gaming+a15" },
+            { name:"MSI Katana 17", shop:"Яндекс.Маркет", trust:true, price:119500, reviews:4.5, reviewsCount:203, nnm:false, url:"https://market.yandex.ru/search?text=msi+katana+17" },
+            { name:"Dell G15 (подозрительно)", shop:"ИП Ноунейм", trust:false, price:89999, reviews:3.1, reviewsCount:12, nnm:true, url:"#" }
+        ]
+    },
+    coffee: {
+        keywords: ['кофе','кофемашина','зерна','зерновая','эспрессо','капучино','coffee'],
+        aiResponse: "Зерновая кофемашина — отличный выбор. <strong>Delonghi</strong> и <strong>Philips</strong> лидируют. Ноунеймы скрыты.<br><br>💡 <em>Нажмите на карточку — откроется товар в магазине.</em>",
+        products: [
+            { name:"De'Longhi Magnifica S ECAM 22.110", shop:"М.Видео", trust:true, price:45990, reviews:4.9, reviewsCount:1245, nnm:false, url:"https://www.mvideo.ru/search?q=delonghi+magnifica+s" },
+            { name:"Philips Series 2200 EP2230", shop:"OZON", trust:true, price:42990, reviews:4.7, reviewsCount:876, nnm:false, url:"https://www.ozon.ru/search/?text=philips+2200+ep2230" },
+            { name:"Kitfort КТ-739", shop:"Ситилинк", trust:true, price:18990, reviews:4.4, reviewsCount:432, nnm:false, url:"https://www.citilink.ru/search/?text=kitfort+kt+739" },
+            { name:"Супер-кофе Ultra 3000", shop:"Telegram-канал", trust:false, price:15990, reviews:2.8, reviewsCount:5, nnm:true, url:"#" }
+        ]
+    },
+    vacuum: {
+        keywords: ['пылесос','робот','уборка','влажная','robot','vacuum'],
+        aiResponse: "Робот-пылесос с влажной уборкой. <strong>Xiaomi</strong> и <strong>Dreame</strong> — лучшие.<br><br>💡 <em>Нажмите на карточку — откроется товар в магазине.</em>",
+        products: [
+            { name:"Xiaomi Robot Vacuum X20+", shop:"Яндекс.Маркет", trust:true, price:32990, reviews:4.7, reviewsCount:678, nnm:false, url:"https://market.yandex.ru/search?text=xiaomi+robot+vacuum+x20" },
+            { name:"Dreame D10 Plus", shop:"OZON", trust:true, price:28990, reviews:4.8, reviewsCount:543, nnm:false, url:"https://www.ozon.ru/search/?text=dreame+d10+plus" },
+            { name:"iRobot Roomba i3+", shop:"DNS", trust:true, price:44990, reviews:4.5, reviewsCount:890, nnm:false, url:"https://www.dns-shop.ru/search/?q=irobot+roomba+i3" },
+            { name:"Копия Xiaomi", shop:"Палатка на рынке", trust:false, price:12990, reviews:3.9, reviewsCount:34, nnm:true, url:"#" }
+        ]
+    },
+    powerbank: {
+        keywords: ['пауэрбанк','powerbank','зарядка','поход','аккумулятор','power bank'],
+        aiResponse: "Мощный пауэрбанк 65W+. <strong>Baseus Blade</strong> и <strong>Xiaomi 50W</strong> — топ.<br><br>💡 <em>Нажмите на карточку — откроется товар в магазине.</em>",
+        products: [
+            { name:"Baseus Blade 100W 20000mAh", shop:"OZON", trust:true, price:5490, reviews:4.8, reviewsCount:2100, nnm:false, url:"https://www.ozon.ru/search/?text=baseus+blade+100w" },
+            { name:"Xiaomi Power Bank 50W 20000mAh", shop:"Яндекс.Маркет", trust:true, price:3990, reviews:4.9, reviewsCount:3400, nnm:false, url:"https://market.yandex.ru/search?text=xiaomi+power+bank+50w" },
+            { name:"Anker PowerCore 737", shop:"М.Видео", trust:true, price:8990, reviews:4.9, reviewsCount:980, nnm:false, url:"https://www.mvideo.ru/search?q=anker+powercore+737" },
+            { name:'Пауэрбанк "Ядерный"', shop:"СПАМ-рассылка", trust:false, price:1490, reviews:2.2, reviewsCount:8, nnm:true, url:"#" }
+        ]
+    },
+    headphones: {
+        keywords: ['наушники','блютуз','звук','музыка','headphones','гарнитура'],
+        aiResponse: "Беспроводные наушники с шумоподавлением. <strong>Sony</strong> и <strong>Apple</strong> — лидеры.<br><br>💡 <em>Нажмите на карточку — откроется товар в магазине.</em>",
+        products: [
+            { name:"Sony WH-1000XM5", shop:"М.Видео", trust:true, price:29990, reviews:4.9, reviewsCount:2500, nnm:false, url:"https://www.mvideo.ru/search?q=sony+wh+1000xm5" },
+            { name:"Apple AirPods Pro 2", shop:"DNS", trust:true, price:23990, reviews:4.8, reviewsCount:5200, nnm:false, url:"https://www.dns-shop.ru/search/?q=apple+airpods+pro+2" },
+            { name:"Samsung Galaxy Buds2 Pro", shop:"OZON", trust:true, price:14990, reviews:4.6, reviewsCount:1230, nnm:false, url:"https://www.ozon.ru/search/?text=samsung+galaxy+buds2+pro" },
+            { name:"Супер-звук Pro Max", shop:"Стихийный рынок", trust:false, price:2990, reviews:3.5, reviewsCount:45, nnm:true, url:"#" }
+        ]
+    },
+    phone: {
+        keywords: ['телефон','смартфон','iphone','android','самсунг','сяоми'],
+        aiResponse: "Смартфон с хорошей камерой. Сравнил 27 магазинов.<br><br>💡 <em>Нажмите на карточку — откроется товар в магазине.</em>",
+        products: [
+            { name:"Samsung Galaxy S24 Ultra", shop:"OZON", trust:true, price:109990, reviews:4.8, reviewsCount:1400, nnm:false, url:"https://www.ozon.ru/search/?text=samsung+galaxy+s24+ultra" },
+            { name:"iPhone 15 Pro", shop:"М.Видео", trust:true, price:124990, reviews:4.9, reviewsCount:3200, nnm:false, url:"https://www.mvideo.ru/search?q=iphone+15+pro" },
+            { name:"Xiaomi 14 Pro", shop:"Яндекс.Маркет", trust:true, price:79990, reviews:4.6, reviewsCount:980, nnm:false, url:"https://market.yandex.ru/search?text=xiaomi+14+pro" },
+            { name:"iPhone 15 Pro (серый)", shop:"Ларёк у метро", trust:false, price:59990, reviews:2.9, reviewsCount:18, nnm:true, url:"#" }
+        ]
+    },
+    fallback: {
+        aiResponse: "В этой демо-версии я могу показать: <strong>ноутбук, кофемашину, робот-пылесос, пауэрбанк, наушники или смартфон</strong>. Попробуйте один из этих запросов!",
+        products: []
+    }
+};
+
+function findScenario(query) {
+    const lowerQuery = query.toLowerCase();
+    let bestMatch = null;
+    let bestScore = 0;
+    for (const [key, data] of Object.entries(DEMO_DATA)) {
+        if (key === 'fallback') continue;
+        let score = 0;
+        for (const keyword of data.keywords) {
+            if (lowerQuery.includes(keyword)) score += keyword.length;
         }
+        if (score > bestScore) { bestScore = score; bestMatch = key; }
+    }
+    return bestScore > 0 ? bestMatch : 'fallback';
+}
+
+function calculateKvikScore(product) {
+    const Q = product.reviews * Math.log10(product.reviewsCount + 1);
+    return (Q / product.price * 10000).toFixed(1);
+}
+
+function renderProducts(scenario) {
+    const data = DEMO_DATA[scenario];
+    const container = document.getElementById('productContainer');
+    if (!data.products || data.products.length === 0) {
+        container.innerHTML = '<div class="empty-state"><div class="icon">🔍</div><p>'+data.aiResponse+'</p></div>';
+        return;
+    }
+    const sorted = data.products.sort((a, b) => {
+        if (a.nnm && !b.nnm) return 1;
+        if (!a.nnm && b.nnm) return -1;
+        return calculateKvikScore(b) - calculateKvikScore(a);
+    });
+    container.innerHTML = sorted.map(p => {
+        const score = calculateKvikScore(p);
+        return '<a href="'+p.url+'" target="_blank" rel="noopener" class="product-card'+(p.nnm?' no-name':'')+'">'+
+            '<span class="external-link-icon">🔗</span>'+
+            '<div class="product-name">'+p.name+'</div>'+
+            '<div class="shop-row"><span class="shop-name">'+p.shop+'</span>'+
+            (p.trust?'<span class="trust-badge">✅ ПРОВЕРЕН</span>':'<span class="no-name-badge">❌ НОУНЕЙМ</span>')+
+            '</div>'+
+            '<div class="price-row"><span class="price">'+p.price.toLocaleString('ru-RU')+' <span class="price-rub">₽</span></span>'+
+            '<span class="kvik-score">⚡ '+score+'</span></div>'+
+            '<div class="meta-info"><span>★ '+p.reviews+'</span><span>📝 '+p.reviewsCount+' отзывов</span><span>🛡️ '+(p.nnm?'0':'Высокий')+'</span></div>'+
+            '</a>';
+    }).join('');
+}
+
+async function sendMessage() {
+    const input = document.getElementById('userInput');
+    const query = input.value.trim();
+    if (!query) return;
+    const messagesDiv = document.getElementById('chatMessages');
+    const userMsg = document.createElement('div');
+    userMsg.className = 'message user';
+    userMsg.textContent = query;
+    messagesDiv.appendChild(userMsg);
+    input.value = '';
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message ai typing';
+    typingDiv.innerHTML = '<span></span><span></span><span></span>';
+    messagesDiv.appendChild(typingDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    const scenario = findScenario(query);
+    await new Promise(r => setTimeout(r, 1200 + Math.random() * 900));
+    typingDiv.remove();
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'message ai';
+    aiMsg.innerHTML = DEMO_DATA[scenario].aiResponse;
+    messagesDiv.appendChild(aiMsg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    renderProducts(scenario);
+}
+
+async function runScenario(scenario) {
+    const messagesDiv = document.getElementById('chatMessages');
+    const data = DEMO_DATA[scenario];
+    const labels = {
+        laptop:'💻 Посоветуй ноутбук для работы и игр',
+        coffee:'☕ Хочу кофемашину, чтобы молола зерна',
+        vacuum:'🤖 Нужен робот-пылесос с влажной уборкой',
+        powerbank:'🔋 Пауэрбанк для походов и зарядки ноутбука',
+        headphones:'🎧 Посоветуй хорошие беспроводные наушники',
+        phone:'📱 Нужен мощный смартфон с хорошей камерой'
     };
-
-    // ============================================
-    // УМНЫЙ ПОИСК СЦЕНАРИЯ ПО КЛЮЧЕВЫМ СЛОВАМ
-    // ============================================
-    function findScenario(query) {
-        const lowerQuery = query.toLowerCase();
-        let bestMatch = null;
-        let bestScore = 0;
-
-        for (const [key, data] of Object.entries(DEMO_DATA)) {
-            if (key === 'fallback') continue;
-            let score = 0;
-            for (const keyword of data.keywords) {
-                if (lowerQuery.includes(keyword)) {
-                    score += keyword.length; // длинные совпадения весят больше
-                }
-            }
-            if (score > bestScore) {
-                bestScore = score;
-                bestMatch = key;
-            }
-        }
-
-        return bestScore > 0 ? bestMatch : 'fallback';
-    }
-
-    // ============================================
-    // ФОРМУЛА КВИК Q/P
-    // ============================================
-    function calculateKvikScore(product) {
-        const Q = product.reviews * Math.log10(product.reviewsCount + 1);
-        return (Q / product.price * 10000).toFixed(1);
-    }
-
-    // ============================================
-    // ОТРИСОВКА КАРТОЧЕК
-    // ============================================
-    function renderProducts(scenario) {
-        const data = DEMO_DATA[scenario];
-        const container = document.getElementById('productContainer');
-        
-        if (!data.products || data.products.length === 0) {
-            container.innerHTML = `
-                <div class="empty-state">
-                    <div class="icon">🔍</div>
-                    <p>${data.aiResponse}</p>
-                </div>
-            `;
-            return;
-        }
-
-        const sorted = data.products.sort((a, b) => {
-            if (a.nnm && !b.nnm) return 1;
-            if (!a.nnm && b.nnm) return -1;
-            return calculateKvikScore(b) - calculateKvikScore(a);
-        });
-
-        container.innerHTML = sorted.map(p => {
-            const score = calculateKvikScore(p);
-            return `
-                <div class="product-card ${p.nnm ? 'no-name' : ''}">
-                    <div class="product-name">${p.name}</div>
-                    <div class="shop-row">
-                        <span class="shop-name">${p.shop}</span>
-                        ${p.trust ? '<span class="trust-badge">✅ ПРОВЕРЕН</span>' : '<span class="no-name-badge">❌ НОУНЕЙМ</span>'}
-                    </div>
-                    <div class="price-row">
-                        <span class="price">${p.price.toLocaleString('ru-RU')} <span class="price-rub">₽</span></span>
-                        <span class="kvik-score">⚡ ${score}</span>
-                    </div>
-                    <div class="meta-info">
-                        <span>★ ${p.reviews}</span>
-                        <span>📝 ${p.reviewsCount} отзывов</span>
-                        <span>🛡️ Индекс доверия: ${p.nnm ? '0' : 'Высокий'}</span>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    // ============================================
-    // ОСНОВНАЯ ЛОГИКА ОТПРАВКИ СООБЩЕНИЯ
-    // ============================================
-    async function sendMessage() {
-        const input = document.getElementById('userInput');
-        const query = input.value.trim();
-        if (!query) return;
-
-        const messagesDiv = document.getElementById('chatMessages');
-        
-        // Добавляем сообщение пользователя
-        const userMsg = document.createElement('div');
-        userMsg.className = 'message user';
-        userMsg.textContent = query;
-        messagesDiv.appendChild(userMsg);
-        
-        // Очищаем поле ввода
-        input.value = '';
-        
-        // Точки печати
-        const typingDiv = document.createElement('div');
-        typingDiv.className = 'message ai typing';
-        typingDiv.innerHTML = '<span></span><span></span><span></span>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-        // Ищем подходящий сценарий
-        const scenario = findScenario(query);
-        
-        // Имитация "думания" ИИ
-        await new Promise(r => setTimeout(r, 1200 + Math.random() * 900));
-
-        // Убираем точки, показываем ответ
-        typingDiv.remove();
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'message ai';
-        aiMsg.innerHTML = DEMO_DATA[scenario].aiResponse;
-        messagesDiv.appendChild(aiMsg);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-        // Обновляем карточки
-        renderProducts(scenario);
-    }
-
-    // ============================================
-    // БЫСТРЫЕ СЦЕНАРИИ (ПО КНОПКАМ)
-    // ============================================
-    async function runScenario(scenario) {
-        const messagesDiv = document.getElementById('chatMessages');
-        const data = DEMO_DATA[scenario];
-
-        const labels = {
-            laptop: '💻 Посоветуй ноутбук для работы и игр (Cyberpunk)',
-            coffee: '☕ Хочу кофемашину, чтобы молола зерна',
-            vacuum: '🤖 Нужен робот-пылесос с влажной уборкой',
-            powerbank: '🔋 Пауэрбанк для походов и зарядки ноутбука',
-            headphones: '🎧 Посоветуй хорошие беспроводные наушники',
-            phone: '📱 Нужен мощный смартфон с хорошей камерой'
-        };
-
-        const userMsg = document.createElement('div');
-        userMsg.className = 'message user';
-        userMsg.textContent = labels[scenario] || 'Покажи лучшие товары';
-        messagesDiv.appendChild(userMsg);
-
-        const typingDiv = document.createElement('div');
-        typingDiv.className = 'message ai typing';
-        typingDiv.innerHTML = '<span></span><span></span><span></span>';
-        messagesDiv.appendChild(typingDiv);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-        await new Promise(r => setTimeout(r, 1100 + Math.random() * 700));
-
-        typingDiv.remove();
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'message ai';
-        aiMsg.innerHTML = data.aiResponse;
-        messagesDiv.appendChild(aiMsg);
-        messagesDiv.scrollTop = messagesDiv.scrollHeight;
-
-        renderProducts(scenario);
-    }
+    const userMsg = document.createElement('div');
+    userMsg.className = 'message user';
+    userMsg.textContent = labels[scenario] || 'Покажи лучшие товары';
+    messagesDiv.appendChild(userMsg);
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message ai typing';
+    typingDiv.innerHTML = '<span></span><span></span><span></span>';
+    messagesDiv.appendChild(typingDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    await new Promise(r => setTimeout(r, 1100 + Math.random() * 700));
+    typingDiv.remove();
+    const aiMsg = document.createElement('div');
+    aiMsg.className = 'message ai';
+    aiMsg.innerHTML = data.aiResponse;
+    messagesDiv.appendChild(aiMsg);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    renderProducts(scenario);
+}
 </script>
-
 </body>
 </html>
